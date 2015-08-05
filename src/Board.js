@@ -82,16 +82,20 @@
 //var ourBoard = Board({n:5})
     hasRowConflictAt: function(rowIndex) { //4
       //getting the number of rows/pieces
+      console.log('rowIndex', rowIndex);
       var n = this.get('n') //5
+      console.log('n',n);
       var count = 0;
       var row = this.get(rowIndex);
+      console.log('row', row);
 
       //looping through each of the columns
       for (var colIndex = 0; colIndex < n; colIndex++) { // n= 5
         count = count + row[colIndex];
-
+        console.log('row[colIndex]', row[colIndex]);
+        console.log('count', count)
       }
-      if (count > 0) return true;
+      if (count > 1) return true;
       return false;
 
     },
@@ -113,15 +117,23 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
+      console.log("colIndex",colIndex)
       var n = this.get('n');
+      console.log("n",n);
       var count = 0;
-      var column = this.get(colIndex);
 
-      for (var rowIndex = 0; rowIndex < n; rowIndex++) {
-        count = count + column[rowIndex];
+      for(var i =0;i< n;i++){
+        var row = this.get(i)
+        count += row[colIndex];
       }
+      //   console.log('this.get(i)',this.get(i))
+      // }
+      // console.log('this.get(colIndex)', colIndex)
+      // for (var rowIndex = 0; rowIndex < n; rowIndex++) {
+      //   count = count + row[rowIndex];
+      // }
 
-      if (count > 0 ) return true;
+      if (count > 1 ) return true;
       return false;
     },
 
