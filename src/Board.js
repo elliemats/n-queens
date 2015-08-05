@@ -18,6 +18,7 @@
       }
     },
 
+
     rows: function() {
       return _(_.range(this.get('n'))).map(function(rowIndex) {
         return this.get(rowIndex);
@@ -82,18 +83,17 @@
 //var ourBoard = Board({n:5})
     hasRowConflictAt: function(rowIndex) { //4
       //getting the number of rows/pieces
-      console.log('rowIndex', rowIndex);
+
       var n = this.get('n') //5
-      console.log('n',n);
+
       var count = 0;
       var row = this.get(rowIndex);
-      console.log('row', row);
+
 
       //looping through each of the columns
       for (var colIndex = 0; colIndex < n; colIndex++) { // n= 5
         count = count + row[colIndex];
-        console.log('row[colIndex]', row[colIndex]);
-        console.log('count', count)
+
       }
       if (count > 1) return true;
       return false;
@@ -117,21 +117,15 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      console.log("colIndex",colIndex)
+
       var n = this.get('n');
-      console.log("n",n);
+
       var count = 0;
 
       for(var i =0;i< n;i++){
-        var row = this.get(i)
+        var row = this.get(i) //targets each row individually
         count += row[colIndex];
       }
-      //   console.log('this.get(i)',this.get(i))
-      // }
-      // console.log('this.get(colIndex)', colIndex)
-      // for (var rowIndex = 0; rowIndex < n; rowIndex++) {
-      //   count = count + row[rowIndex];
-      // }
 
       if (count > 1 ) return true;
       return false;
@@ -159,13 +153,42 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
-    },
+      console.log('majorDiagonalColumnIndexAtFirstRow',majorDiagonalColumnIndexAtFirstRow)
+
+      var n = this.get('n');
+      var count = 0;
+      var lookUp = majorDiagonalColumnIndexAtFirstRow;
+
+      for(var i =0 ;i< n;i++){
+        if(this._isInBounds(i, lookUp)){
+            var row = this.get(i) //targets each row individually
+            count += row[lookUp];
+            lookUp++;
+      } else {
+        console.log('out')
+        lookUp++;
+        count += 0;
+      }
+    }
+
+
+      if (count > 1 ) return true;
+      return false;
+      },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
+      var n = this.get('n');
+
+
+      for(var i = 0 - (n+1) ; i < n;i++){
+        if(this.hasMajorDiagonalConflictAt(i)){
+          return true;
+        };
+      }
       return false; // fixme
     },
+
 
 
 
