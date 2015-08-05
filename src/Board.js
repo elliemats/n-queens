@@ -180,8 +180,7 @@
     hasAnyMajorDiagonalConflicts: function() {
       var n = this.get('n');
 
-
-      for(var i = 0 - (n+1) ; i < n;i++){
+      for(var i = 0 - (n+1) ; i < n; i++){
         if(this.hasMajorDiagonalConflictAt(i)){
           return true;
         };
@@ -197,6 +196,12 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
+      var n = this.get('n');
+      var count = 0;
+      var lookUp = minorDiagonalColumnIndexAtFirstRow;
+
+
+
       return false; // fixme
     },
 
