@@ -14,22 +14,63 @@
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n rooks placed such that none of them can attack each other
 
 window.findNRooksSolution = function(n) {
-
-    // for loop construction: lookup and index must be less than n-1
-      // first rook starts in position 0,0
-        // checks if hasAnyRooksConflicts
-        // if (false) rook can be placed (aka: pushed into solutions array)
-        // if (true) rook cannot be placed and it needs test the next position
-        // lookup and index must be less than n-1
-      //
+n = 3;
+var solution = []; //stores our board answers
+var board = new Board({'n' : n}); // constructs our board
 
 
-  var solution = undefined; //fixme
-  var count =0;
+for (var i = 0; i < n; i++) { // i is the row index
+  board.get(i)[i] = 1;
+  solution.push(board.get(i));
+  console.log('board', board);
+  console.log('solution', solution);
+}
+console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
+
+return solution;
+
+}
+
+
+
+
+// for (var j = 0;j < n;j++){//iterate through rows on board
+//   for(var k = 0; k < n; k++) { // iterating through each space in each row
+//     console.log(newBoard[j][k]);
+
+//     newBoard[j][k]=1
+//     console.log(newBoard[0]);
+//     console.log(newBoard);
+//     // newBoard.togglePiece(j,k);
+//     console.log(newBoard[j][k]);
+//     console.log('row',row)
+
+//       if(newBoard[j][k].hasAnyRowConflicts || newBoard[j][k].hasAnyColConflicts) {
+//         newBoard[j][k] = 0;
+//       }
+//   }
+
+// }
+// debugger;
+// return newBoard;
+
+
+
+
+
+
+  // construct empty array shell for the board (use new Array constructor)
+  // for loop starts
+  // start at position 0,0 and do rook check on that posiiton (ex: targeting Array[0][0])
+  // possibly use toggle piece to insert a piece at the given location
+
+
+  //var solution = undefined; //fixme
+  //var count =0;
   //
-  console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
-  return solution;
-};
+  //console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
+  //return solution;
+// };
 
 
 

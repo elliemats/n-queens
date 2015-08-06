@@ -190,7 +190,7 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
-      console.log('minorDiagonalColumnIndexAtFirstRow',minorDiagonalColumnIndexAtFirstRow)
+
       var n = this.get('n');
       var count = 0;
       var lookUp = minorDiagonalColumnIndexAtFirstRow;
