@@ -83,21 +83,18 @@
 //var ourBoard = Board({n:5})
     hasRowConflictAt: function(rowIndex) { //4
       //getting the number of rows/pieces
-
       var n = this.get('n') //5
 
       var count = 0;
       var row = this.get(rowIndex);
 
-
       //looping through each of the columns
-      for (var colIndex = 0; colIndex < n; colIndex++) { // n= 5
-        count = count + row[colIndex];
+      for (var i = 0; i < n; i++) {
+        count = count + row[i];
 
       }
       if (count > 1) return true;
       return false;
-
     },
 
     // test if any rows on this board contain conflicts
@@ -109,7 +106,7 @@
           return true;
         };
       }
-      return false; // fixme
+      return false;
     },
 
     // COLUMNS - run from top to bottom
@@ -123,7 +120,7 @@
       var count = 0;
 
       for(var i =0;i< n;i++){
-        var row = this.get(i) //targets each row individually
+        var row = this.get(i); //targets each row individually
         count += row[colIndex];
       }
 
@@ -159,7 +156,7 @@
       var lookUp = majorDiagonalColumnIndexAtFirstRow;
 
       for(var i =0 ;i< n;i++){
-        if(this._isInBounds(i, lookUp)){
+        if(this._isInBounds(i, lookUp)) {
             var row = this.get(i) //targets each row individually
             count += row[lookUp];
             lookUp++;
@@ -182,7 +179,7 @@
           return true;
         };
       }
-      return false; // fixme
+      return false;
     },
 
 
