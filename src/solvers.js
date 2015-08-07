@@ -14,7 +14,7 @@
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n rooks placed such that none of them can attack each other
 
 window.findNRooksSolution = function(n) {
-n = 3;
+// n = 3;
 var solution = []; //stores our board answers
 var board = new Board({'n' : n}); // constructs our board
 
@@ -22,10 +22,8 @@ var board = new Board({'n' : n}); // constructs our board
 for (var i = 0; i < n; i++) { // i is the row index
   board.get(i)[i] = 1;
   solution.push(board.get(i));
-  console.log('board', board);
-  console.log('solution', solution);
 }
-console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
+// console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
 
 return solution;
 
@@ -76,12 +74,64 @@ return solution;
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
 window.countNRooksSolutions = function(n) {
-  var solutionCount = undefined; //fixme
+  var count = 0; //fixme
+  var board = new Board({n: n});
+
+  var countSolutions = function (rowIndex){
+    //loop through colIndexes
+    if(rowIndex === n) return count++;
+
+    for (var i = 0; i < n; i++){
+      console.log('rowindex', rowIndex, 'col', i);
+      console.log(board.rows(), 'row: ', rowIndex);
+      //place a piece on the board board.togglePiece(rowIndex, i)
+          // board.get(rowIndex)[i] = 1;
+          board.togglePiece(rowIndex, i);
+      //check for conflicts hasAnyRooksConflicts
+      if(!board.hasAnyRooksConflicts()){
+
+        //if no conflicts (false) call the function again on the next row (increment row and call again)
+        countSolutions(rowIndex+1)
+      }
+      //if there are conflicts togglePiece back to zero
+      board.togglePiece(rowIndex,i);
+      // board.get(rowIndex)[i] = 0;
+    }
+
+  }
+
+  countSolutions(0);
+// console.log(solutionCount);
+  console.log('pig');
 
 
+  console.log('Number of solutions for ' + n + ' rooks:', count);
+  return count;
+
+};
+
+/*
+
+var solutionCount = 0;
+  var board = new Board({n: n});
+  var recurse = function(row) {
+    if (row === n) {
+      return solutionCount++;
+    }
+    for (var i = 0; i < n; i++) {
+      board.togglePiece(row, i);
+
+      if (!board.hasAnyRooksConflicts()) {
+        recurse(row+1);
+      }
+      board.togglePiece(row, i);
+    }
+  }
+  recurse(0);
   console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
   return solutionCount;
-};
+
+*/
 
 
 
